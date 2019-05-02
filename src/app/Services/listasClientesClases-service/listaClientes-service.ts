@@ -5,7 +5,7 @@ const CLIENTES: Array<Cliente> = [
     new Cliente('Carlos','Garcia','Salta 49'),
 ];
 //tiempo de retraso
-const RETRASO = 500;
+const RETRASO = 0;
 
 @Injectable()
 export class ListaClienteClaseService{

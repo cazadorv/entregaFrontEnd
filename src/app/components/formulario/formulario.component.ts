@@ -11,9 +11,10 @@ export class FormularioClientesComponent {
   model: Cliente = new Cliente('','','');  
   @Output() onsubmit = new EventEmitter<any>();
 
-  public submit(){
+  public getDatos(){
     this.onsubmit.emit(this.model);
     console.log(this.model);
     this.model = new Cliente('','','');
   }
+  
 }

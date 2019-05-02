@@ -1,18 +1,18 @@
 <!--Formulario de alta de clientes-->
 <div>
-    <form method="POST" class="form" (ngSubmit)="submit()" #listaClienteForm="ngForm">
+    <form method="POST" class="form" (ngSubmit)="getDatos()" #listaClienteForm="ngForm" >
         <h4>Ingrese sus datos</h4>
         <div class="form-group">
             <label for="txtNombre">Nombre: </label>
-            <input type="text" id="txtNombre" name="txtNombre" placeholder="Nombre" [(ngModel)]="model.nombre" required/>
+            <input type="text" id="txtNombre" name="txtNombre" placeholder="Nombre" [(ngModel)]="model.nombre" #nombre="ngModel" required minlenght="4" pattern="[A-Z][a-zA-Z0-9]*"/>
         </div>
         <div class="form-group">
             <label for="txtApellido">Apellido: </label>
-            <input type="text" id="txtApellido" name="txtApellido"  placeholder="Apellido" [(ngModel)]="model.apellido" required/>
+            <input type="text" id="txtApellido" name="txtApellido"  placeholder="Apellido" [(ngModel)]="model.apellido" required minlenght="4"/>
         </div>
         <div class="form-group">
             <label for="txtDireccion">Direccion: </label>
-            <input type="text"  id="txtDireccion" name="txtDireccion" placeholder="Direccion" [(ngModel)]="model.direccion" required/>
+            <input type="text"  id="txtDireccion" name="txtDireccion" placeholder="Direccion" [(ngModel)]="model.direccion" required minlenght="6"/>
         </div>
         
         <div class="form-group">            
