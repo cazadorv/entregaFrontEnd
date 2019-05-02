@@ -1,5 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { Cliente } from '../../Clases/Cliente';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'formulario-Alta',
@@ -11,10 +12,19 @@ export class FormularioClientesComponent {
   model: Cliente = new Cliente('','','');  
   @Output() onsubmit = new EventEmitter<any>();
 
+  public vacio(){
+    if (this.model.nombre == ''){
+      return true
+    }
+  }
   public getDatos(){
-    this.onsubmit.emit(this.model);
-    console.log(this.model);
-    this.model = new Cliente('','','');
+    if( !this.vacio){
+        this.onsubmit.emit(this.model);
+        console.log(this.model);
+        this.model = new Cliente('','','');        
+    }else{
+      console.log('algo anda mal')
+    }
   }
   
 }

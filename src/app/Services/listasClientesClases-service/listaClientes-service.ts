@@ -16,4 +16,7 @@ export class ListaClienteClaseService{
             },RETRASO);
         });
     }
+    addCliente(cl:Cliente){ 
+        
+    }
 }
