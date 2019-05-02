@@ -18,9 +18,19 @@ export class AppComponent implements OnInit {
       this.clientes = data;
     });
   }
-
   guardar(model:Cliente){
     this.clientes.push(model);
   }
+  
+    
+    /*listaCliente: Array<string>;
+    constructor(){
+        clientes=[];
+    }
+
+    anadirDatos(cl:Cliente){
+        this.clientes.push(datos);
+        console.log('Se ha anadido los datos del cliente ' + this.listaCliente);
+    }*/
 }
 

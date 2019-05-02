@@ -16,7 +16,9 @@ export class ListaClienteClaseService{
             },RETRASO);
         });
     }
+
     addCliente(cl:Cliente){ 
-        
+        CLIENTES.push(cl);
+        console.log(CLIENTES);
     }
 }
