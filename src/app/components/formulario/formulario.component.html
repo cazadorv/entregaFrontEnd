@@ -1,20 +1,28 @@
 <!--Formulario de alta de clientes-->
 <div>
-    <form method="POST" class="form" (ngSubmit)="getDatos()" #listaClienteForm="ngForm" >
+    <form method="POST" class="form" (ngSubmit)="getDatos()" #listaClienteForm="ngForm">
         <h4>Ingrese sus datos</h4>
         <div class="form-group">
             <label for="txtNombre">Nombre: </label>
-            <input type="text" id="txtNombre" name="txtNombre" placeholder="Nombre" [(ngModel)]="model.nombre" #nombre="ngModel" required minlenght="4" pattern="[A-Z][a-zA-Z0-9]*"/>
+            <input type="text" id="txtNombre" name="txtNombre" placeholder="Nombre" [(ngModel)]="model.nombre" #nombre="ngModel" required minlenght="4" maxlength="20/"/>
+            <div *ngIf="nombre.touched && !nombre.valid">
+                <div *ngIf="nombre.errors.required">Nombre es requerido</div>
+            </div>
         </div>
         <div class="form-group">
             <label for="txtApellido">Apellido: </label>
-            <input type="text" id="txtApellido" name="txtApellido"  placeholder="Apellido" [(ngModel)]="model.apellido" required minlenght="4"/>
+            <input type="text" id="txtApellido" name="txtApellido"  placeholder="Apellido" [(ngModel)]="model.apellido" #apellido="ngModel"required minlenght="4" maxlength="20"/>
+            <div *ngIf="apellido.touched && !nombre.valid">
+                <div *ngIf="nombre.errors.required">Apellido es requerido</div>
+            </div>
         </div>
         <div class="form-group">
             <label for="txtDireccion">Direccion: </label>
-            <input type="text"  id="txtDireccion" name="txtDireccion" placeholder="Direccion" [(ngModel)]="model.direccion" required minlenght="6"/>
-        </div>
-        
+            <input type="text"  id="txtDireccion" name="txtDireccion" placeholder="Direccion" [(ngModel)]="model.direccion" #direccion="ngModel" required minlenght="6" maxlength="20"/>
+            <div *ngIf="direccion.touched && !nombre.valid">
+                <div *ngIf="nombre.errors.required">Direccion es requerida</div>
+            </div>
+        </div>        
         <div class="form-group">            
             <button type="submit" class="btn btn-primary" >Guardar datos</button>
         </div>
