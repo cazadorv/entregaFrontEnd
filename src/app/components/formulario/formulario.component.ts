@@ -13,7 +13,7 @@ export class FormularioClientesComponent {
   @Output() onsubmit = new EventEmitter<any>();
 
   public vacio(){
-    if (this.model.nombre == ''){
+    if (this.model.nombre == '' || this.model.apellido == '' || this.model.direccion == '' ){
       return true
     }
   }

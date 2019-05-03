@@ -12,15 +12,16 @@
         <div class="form-group">
             <label for="txtApellido">Apellido: </label>
             <input type="text" id="txtApellido" name="txtApellido"  placeholder="Apellido" [(ngModel)]="model.apellido" #apellido="ngModel"required minlenght="4" maxlength="20"/>
-            <div *ngIf="apellido.touched && !nombre.valid">
-                <div *ngIf="nombre.errors.required">Apellido es requerido</div>
+            <div *ngIf="apellido.touched && !apellido.valid">
+                <div *ngIf="apellido.errors.required">Apellido es requerido</div>
             </div>
         </div>
         <div class="form-group">
             <label for="txtDireccion">Direccion: </label>
-            <input type="text"  id="txtDireccion" name="txtDireccion" placeholder="Direccion" [(ngModel)]="model.direccion" #direccion="ngModel" required minlenght="6" maxlength="20"/>
-            <div *ngIf="direccion.touched && !nombre.valid">
-                <div *ngIf="nombre.errors.required">Direccion es requerida</div>
+            <input type="text"  id="txtDireccion" name="txtDireccion" placeholder="Direccion" [(ngModel)]="model.direccion" #direccion="ngModel" required minlenght="6" maxlength="20" ng-pattern="/^[a-zA-Z0-9]*$/"/>
+            <div *ngIf="direccion.touched && !direccion.valid">
+                <div *ngIf="direccion.errors.required">Direccion es requerida</div>
+                <div *ngIf="direccion.errors.ng-pattern">La dirrecion esta mal expresada</div>
             </div>
         </div>        
         <div class="form-group">            

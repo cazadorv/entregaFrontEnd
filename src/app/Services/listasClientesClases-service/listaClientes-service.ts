@@ -14,12 +14,15 @@ export class ListaClienteClaseService{
             });
     }
 
-    addCliente(cl:Cliente){ 
+    addCliente(cl:Cliente){
         CLIENTES.push(cl);
         console.log("cliServ array --> "+ CLIENTES);
     }
 
     deleteCliente(){
         return CLIENTES.pop();
+    }
+    getbyId(cl:Cliente){
+        return CLIENTES.indexOf(cl)
     }
 }

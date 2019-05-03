@@ -21,13 +21,9 @@ export class AppComponent implements OnInit {
   guardar(model:Cliente){
     this.arrayClientes.push(model);
     console.log(this.arrayClientes);
+    
   }
-    /*listaCliente: Array<string>;
-    constructor(){
-        clientes=[];
-    }
-
-    ana dirDatos(cl:Cliente){
+    /*ana dirDatos(cl:Cliente){
         this.clientes.push(datos);
         console.log('Se ha anadido los datos del cliente ' + this.listaCliente);
     }*/
