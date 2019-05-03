@@ -9,26 +9,25 @@ import { ListaClienteClaseService } from './Services/listasClientesClases-servic
 })
 
 export class AppComponent implements OnInit {
-  clientes: Array<Cliente>=[];
+  arrayClientes: Array<Cliente>=[];
 
   constructor(private servicio:ListaClienteClaseService){}
   
   ngOnInit(){
     this.servicio.getClientes().then(data => {
-      this.clientes = data;
+      this.arrayClientes=data;
     });
   }
   guardar(model:Cliente){
-    this.clientes.push(model);
+    this.arrayClientes.push(model);
+    console.log(this.arrayClientes);
   }
-  
-    
     /*listaCliente: Array<string>;
     constructor(){
         clientes=[];
     }
 
-    anadirDatos(cl:Cliente){
+    ana dirDatos(cl:Cliente){
         this.clientes.push(datos);
         console.log('Se ha anadido los datos del cliente ' + this.listaCliente);
     }*/

@@ -4,21 +4,22 @@ import {Cliente} from '../../Clases/Cliente';
 const CLIENTES: Array<Cliente> = [
     new Cliente('Carlos','Garcia','Salta 49'),
 ];
-//tiempo de retraso
-const RETRASO = 0;
 
 @Injectable()
 export class ListaClienteClaseService{
     getClientes(){
-        return new Promise<Cliente[]>(data =>{
-            setTimeout(()=>{
-                data(CLIENTES);
-            },RETRASO);
-        });
+        return new Promise<Cliente[]>
+            (data =>{            
+                data(CLIENTES);            
+            });
     }
 
     addCliente(cl:Cliente){ 
         CLIENTES.push(cl);
-        console.log(CLIENTES);
+        console.log("cliServ array --> "+ CLIENTES);
+    }
+
+    deleteCliente(){
+        return CLIENTES.pop();
     }
 }
