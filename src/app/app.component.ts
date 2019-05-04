@@ -1,6 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { Cliente} from '../app/Clases/Cliente';
 import { ListaClienteClaseService } from './Services/listasClientesClases-service/listaClientes-service'
+//import { ListaClienteApiService} from './Services/listaClienteApi-service/listaClienteApi.service'
 
 @Component({
   selector: 'app-root',
@@ -23,9 +24,5 @@ export class AppComponent implements OnInit {
     console.log(this.arrayClientes);
     
   }
-    /*ana dirDatos(cl:Cliente){
-        this.clientes.push(datos);
-        console.log('Se ha anadido los datos del cliente ' + this.listaCliente);
-    }*/
 }
 
