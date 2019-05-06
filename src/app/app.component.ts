@@ -1,7 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { Cliente} from '../app/Clases/Cliente';
-import { ListaClienteClaseService } from './Services/listasClientesClases-service/listaClientes-service'
-//import { ListaClienteApiService} from './Services/listaClienteApi-service/listaClienteApi.service'
+//import { ListaClienteClaseService } from './Services/listasClientesClases-service/listaClientes-service'
+import { ListaClienteApiService} from './Services/listaClienteApi-service/listaClienteApi.service'
 
 @Component({
   selector: 'app-root',
@@ -12,15 +12,21 @@ import { ListaClienteClaseService } from './Services/listasClientesClases-servic
 export class AppComponent implements OnInit {
   arrayClientes: Array<Cliente>=[];
 
-  constructor(private servicio:ListaClienteClaseService){}
+  constructor(private servicio:ListaClienteApiService){}
   
   ngOnInit(){
-    this.servicio.getClientes().then(data => {
+    //this.servicio.getClientes().then
+    this.servicio.getClientes().subscribe(data => {
       this.arrayClientes=data;
     });
   }
   guardar(model:Cliente){
-    this.arrayClientes.push(model);
+    this.servicio.addCliente(model).subscribe(
+      data =>{
+        this.arrayClientes.push(data);
+      }
+    );
+    //this.arrayClientes.push(model);
     console.log(this.arrayClientes);
     
   }

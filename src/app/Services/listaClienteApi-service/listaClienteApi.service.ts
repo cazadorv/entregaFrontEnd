@@ -13,7 +13,7 @@ export class ListaClienteApiService{
 
     constructor(private http:HttpClient){}
 
-    //devuelve el listado de todos los clientes
+    //devuelve el listado de todos los clientes, con un get
     getClientes():Observable<Cliente[]>{
         return this.http.get(this.obtenerRuta('')).pipe(
             map(response => {this.obtenerDatos}).call(this.error)); 

@@ -4,6 +4,7 @@ import { promise } from 'protractor';
 
 const CLIENTES: Array<Cliente> = [
     new Cliente(0,'Carlos','Garcia','Salta 49'),
+    new Cliente(1,'Alejandro','Bautis','roman mejia 45'),
 ];
 
 @Injectable()
@@ -23,7 +24,7 @@ export class ListaClienteClaseService{
     deleteCliente(id?:number,cl?:Cliente){
         const index = CLIENTES.findIndex(
             c => c.id === id)
-        if (index>0){
+        if (index>1){
             CLIENTES.splice(index,1);
         }
     }
@@ -34,7 +35,9 @@ export class ListaClienteClaseService{
                 x=> x.id === id
             )
             if (c){
-                resolve((c))
+                console.log(c);
+                resolve(null)
+
             }else{resolve(null)}            
         });
     }

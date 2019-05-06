@@ -8,7 +8,7 @@ import { Cliente } from '../../Clases/Cliente';
 
 export class FormularioClientesComponent {
   
-  model: Cliente = new Cliente('','','');  
+  model: Cliente = new Cliente(0,'','','');  
   
   @Output() onsubmit = new EventEmitter<any>();
 
@@ -21,7 +21,7 @@ export class FormularioClientesComponent {
     
     if( !this.vacio()){
         this.onsubmit.emit(this.model);
-        this.model = new Cliente('','','');        
+        this.model = new Cliente(0,'','','');        
     }else{
       console.log('algo anda mal')
     }
