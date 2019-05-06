@@ -9,7 +9,7 @@ import { Cliente} from '../../Clases/Cliente';
 @Injectable()
 export class ListaClienteApiService{
 
-    private apiUrl='http://localhost:4200/';
+    private apiUrl='http://localhost:5000/cliente';
 
     constructor(private http:HttpClient){}
 
