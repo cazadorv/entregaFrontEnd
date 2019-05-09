@@ -13,8 +13,8 @@
     <td>{{item.apellido}}</td>
     <td>{{item.direccion}}</td>
     <td>
-        <button>Borrar</button>
-        <button>Editar</button>
+        <button class="btn btn-danger" (click)="deleteCliente(item.id)">Borrar</button>
+        <button class="btn btn-primary">Editar</button>
     </td>
 </tr>
 </table>

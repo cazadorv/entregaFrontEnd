@@ -1,4 +1,5 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { ListaClienteClaseService } from './../../Services/listasClientesClases-service/listaClientes-service';
+import { Component} from '@angular/core';
 import { Cliente } from '../../Clases/Cliente';
 
 @Component({
@@ -8,23 +9,20 @@ import { Cliente } from '../../Clases/Cliente';
 
 export class FormularioClientesComponent {
   
-  model: Cliente = new Cliente(0,'','','');  
-  
-  @Output() onsubmit = new EventEmitter<any>();
+  newCliente: Cliente = new Cliente(0,'','','');  
 
-  public vacio(){
-    if (this.model.nombre == '' || this.model.apellido == '' || this.model.direccion == '' ){
-      return true
-    }
+  constructor( private servicio: ListaClienteClaseService ) {}
+
+  //genero el nuevo id para el cliente
+  //luego agrego al nuevo cliente se agrega al arreglo
+  onSubmit() {
+    this.newCliente.id = this.servicio.generateId();
+    this.servicio.addCliente(this.newCliente)
+      .then(() => { this.clearForm(); })
+      .catch((error => console.log(error)));
   }
-  public getDatos(){
+  clearForm() {
+    this.newCliente = new Cliente( 0, '', '', '');
+  }
     
-    if( !this.vacio()){
-        this.onsubmit.emit(this.model);
-        this.model = new Cliente(0,'','','');        
-    }else{
-      console.log('algo anda mal')
-    }
-  }
-  
 }

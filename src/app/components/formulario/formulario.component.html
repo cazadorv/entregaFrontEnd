@@ -1,31 +1,23 @@
 <!--Formulario de alta de clientes-->
-<div>
-    <form method="POST" class="form border-bottom" (ngSubmit)="getDatos()" #listaClienteForm="ngForm">
-        <h4>Ingrese sus datos</h4>
+<div  class="row justify-content-center">        
+    <form class="form border-bottom" (ngSubmit)="onSubmit()" #listaClienteForm="ngForm">
+        <div class="row justify-content-center">
+           <h4>Ingrese sus datos</h4>
+        </div>
         <div class="form-group">
             <label for="txtNombre">Nombre: </label>
-            <input type="text" id="txtNombre" name="txtNombre" placeholder="Nombre" [(ngModel)]="model.nombre" #nombre="ngModel" required minlenght="4" maxlength="20/"/>
-            <div *ngIf="nombre.touched && !nombre.valid">
-                <div *ngIf="nombre.errors.required">Nombre es requerido</div>
-            </div>
+            <input type="text" id="txtNombre" name="txtNombre" placeholder="Nombre" [(ngModel)]="newCliente.nombre" required minlenght="4" maxlength="20/"/>            
         </div>
         <div class="form-group">
             <label for="txtApellido">Apellido: </label>
-            <input type="text" id="txtApellido" name="txtApellido"  placeholder="Apellido" [(ngModel)]="model.apellido" #apellido="ngModel"required minlenght="4" maxlength="20"/>
-            <div *ngIf="apellido.touched && !apellido.valid">
-                <div *ngIf="apellido.errors.required">Apellido es requerido</div>
-            </div>
+            <input type="text" id="txtApellido" name="txtApellido"  placeholder="Apellido" [(ngModel)]="newCliente.apellido" required minlenght="4" maxlength="20"/>            
         </div>
         <div class="form-group">
             <label for="txtDireccion">Direccion: </label>
-            <input type="text"  id="txtDireccion" name="txtDireccion" placeholder="Direccion" [(ngModel)]="model.direccion" #direccion="ngModel" required minlenght="6" maxlength="20" ng-pattern="/^[a-zA-Z0-9]*$/"/>
-            <div *ngIf="direccion.touched && !direccion.valid">
-                <div *ngIf="direccion.errors.required">Direccion es requerida</div>
-                <div *ngIf="direccion.errors.ng-pattern">La dirrecion esta mal expresada</div>
-            </div>
+            <input type="text"  id="txtDireccion" name="txtDireccion" placeholder="Direccion" [(ngModel)]="newCliente.direccion" required minlenght="6" maxlength="20" ng-pattern="/^[a-zA-Z0-9]*$/"/>
         </div>        
         <div class="form-group">            
-            <button type="submit" class="btn btn-primary" >Guardar datos</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!listaClienteForm.valid">Guardar datos</button>
         </div>
     </form>
 </div>

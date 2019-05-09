@@ -1,7 +1,10 @@
 import { Component,OnInit } from '@angular/core';
-import { Cliente} from '../app/Clases/Cliente';
-//import { ListaClienteClaseService } from './Services/listasClientesClases-service/listaClientes-service'
-import { ListaClienteApiService} from './Services/listaClienteApi-service/listaClienteApi.service'
+
+//Servicios
+import { ListaClienteClaseService } from './Services/listasClientesClases-service/listaClientes-service'
+
+//Clases
+import { Cliente } from './Clases/Cliente';
 
 @Component({
   selector: 'app-root',
@@ -10,25 +13,17 @@ import { ListaClienteApiService} from './Services/listaClienteApi-service/listaC
 })
 
 export class AppComponent implements OnInit {
-  arrayClientes: Array<Cliente>=[];
 
-  constructor(private servicio:ListaClienteApiService){}
-  
+  arrayClientes: Array<Cliente> = [];
+
+  constructor( private servicio:ListaClienteClaseService) {}
+
   ngOnInit(){
-    //this.servicio.getClientes().then
-    this.servicio.getClientes().subscribe(data => {
-      this.arrayClientes=data;
-    });
-  }
-  guardar(model:Cliente){
-    this.servicio.addCliente(model).subscribe(
-      data =>{
-        this.arrayClientes.push(data);
-      }
-    );
-    //this.arrayClientes.push(model);
-    console.log(this.arrayClientes);
+    this.servicio.getClientes()
+      .then( clientes => this.arrayClientes = clientes)
+      .catch( error => console.log(error));
     
   }
+      
 }
 

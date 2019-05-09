@@ -16,8 +16,9 @@ import { ListaClienteApiService} from './Services/listaClienteApi-service/listaC
     ListadoClientesComponent    
   ],
   imports: [
-    BrowserModule,FormsModule
-, HttpClientModule  ],
+    BrowserModule,
+    FormsModule, 
+    HttpClientModule  ],
   providers: [
     ListaClienteClaseService,
     ListaClienteApiService

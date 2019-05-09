@@ -1,44 +1,51 @@
 import {Injectable} from '@angular/core';
 import {Cliente} from '../../Clases/Cliente';
-import { promise } from 'protractor';
 
-const CLIENTES: Array<Cliente> = [
-    new Cliente(0,'Carlos','Garcia','Salta 49'),
-    new Cliente(1,'Alejandro','Bautis','roman mejia 45'),
-];
+const CLIENTES = [
+    { id: 0, nombre: 'Santiago', apellido: 'Garcia', direccion: 'Salta 49' },
+    { id: 1, nombre: 'Hernan', apellido: 'Cataneo', direccion: 'Moreno 1196' },
+    { id: 2, nombre: 'Juan', apellido: 'Roman', direccion: 'Las Heras 234' },
+    { id: 3, nombre: 'Carolina', apellido: 'Chichona', direccion: 'Cordoba 2899' },
+    { id: 4, nombre: 'Gaston', apellido: 'Sosa', direccion: 'Av Alem 8767' }
+  ];
 
 @Injectable()
 export class ListaClienteClaseService{
+    
+    //retorna la lista de clientes    
     getClientes(){
         return new Promise<Cliente[]>
             (data =>{            
                 data(CLIENTES);            
             });
     }
-
-    addCliente(cl:Cliente){
-        CLIENTES.push(cl);
-        console.log("cliServ array --> "+ CLIENTES);
+    
+    // genera una id nueva para un nuevo cliente
+    generateId() {
+        const ids = CLIENTES.map(c => c.id);
+        let max = Math.max(...ids);
+        max++;
+        return max;
     }
 
-    deleteCliente(id?:number,cl?:Cliente){
-        const index = CLIENTES.findIndex(
-            c => c.id === id)
-        if (index>1){
-            CLIENTES.splice(index,1);
-        }
+    //agrega un nuevo cliente a la lista
+    addCliente(cl: Cliente){
+    return new Promise( (resolve, reject) => {
+            CLIENTES.push(cl);
+            resolve(CLIENTES);
+        });
     }
-    getbyId(id:number){
-        return new Promise<Cliente[]>
-        ((resolve,reject) =>{
-            const c=CLIENTES.find(
-                x=> x.id === id
-            )
-            if (c){
-                console.log(c);
-                resolve(null)
 
-            }else{resolve(null)}            
+    //elimina un cliente de la lista
+    deleteCliente(id:number){
+        return new Promise( (resolve, reject) => {
+        const index = CLIENTES.findIndex(c => c.id === id)
+            if (index>=0){
+                CLIENTES.splice(index,1);
+                resolve(CLIENTES);
+            }else {
+                reject();
+            }
         });
     }
 }

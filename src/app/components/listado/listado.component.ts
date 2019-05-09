@@ -1,5 +1,8 @@
 import {Component,Input} from '@angular/core';
+//Clase
 import { Cliente} from '../../Clases/Cliente';
+//servicio
+import { ListaClienteClaseService } from './../../Services/listasClientesClases-service/listaClientes-service';
 
 @Component({
     selector: 'listado',
@@ -7,9 +10,16 @@ import { Cliente} from '../../Clases/Cliente';
 })
 
 export class ListadoClientesComponent {
-    @Input() clientes:Array<Cliente>;
+
+    @Input() clientes:Cliente[];
     
-    displayCliente(clientes: Cliente){
-        console.log(clientes);
-    }
+    constructor( private servicio: ListaClienteClaseService){}
+
+    deleteCliente(id: number) {
+        if (confirm("Desea eliminar este cliente??")){        
+        this.servicio.deleteCliente(id)
+          .then(() => console.log('Cliente eliminado'))
+          .catch( error => console.log(error));
+        }
+      }
 }
