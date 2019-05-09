@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { HttpClient} from '@angular/common/http';
+import { HttpClientModule} from '@angular/common/http';
 
 import { FormularioClientesComponent} from './components/formulario/formulario.component'
 import { ListadoClientesComponent } from './components/listado/listado.component';
@@ -17,7 +17,7 @@ import { ListaClienteApiService} from './Services/listaClienteApi-service/listaC
   ],
   imports: [
     BrowserModule,FormsModule
-, HttpClient  ],
+, HttpClientModule  ],
   providers: [
     ListaClienteClaseService,
     ListaClienteApiService
