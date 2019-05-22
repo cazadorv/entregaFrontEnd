@@ -9,19 +9,20 @@ import { Cliente} from '../../Clases/Cliente';
 @Injectable()
 export class ListaClienteApiService{
 
-    private apiUrl='http://localhost:5000/cliente';
+    public apiUrl: string;
 
-    constructor(private http:HttpClient){}
+    constructor(public _http:HttpClient){
+        this.apiUrl = "https://localhost:5001/prueba";
+    }
 
     //devuelve el listado de todos los clientes, con un get
-    getClientes():Observable<Cliente[]>{
-        return this.http.get(this.obtenerRuta('')).pipe(
-            map(response => {this.obtenerDatos}).call(this.error)); 
+    getClientes():Observable<any>{
+        return this._http.get(this.apiUrl);
     }
 
     //metodo que permite hacer un post para dar de alta un producto
     addCliente(modelo:Cliente): Observable<Cliente>{
-        return this.http.post(this.obtenerRuta(''),modelo).pipe(
+        return this._http.post(this.obtenerRuta(''),modelo).pipe(
             map(response => {this.obtenerDatos}).call(this.error));
     }
 
