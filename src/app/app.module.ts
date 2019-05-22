@@ -7,21 +7,28 @@ import { HttpClientModule} from '@angular/common/http';
 import { FormularioClientesComponent} from './components/formulario/formulario.component'
 import { ListadoClientesComponent } from './components/listado/listado.component';
 import { ListaClienteClaseService } from './Services/listasClientesClases-service/listaClientes-service'
-import { ListaClienteApiService} from './Services/listaClienteApi-service/listaClienteApi.service'
+import { ListaClienteApiService} from './Services/listaClienteApi-service/listaClienteApi.service';
+import { HomeComponent } from './components/home/home.component'
+import { routing, appRoutingProviders } from './routes/app.routing';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FormularioClientesComponent,
-    ListadoClientesComponent    
+    ListadoClientesComponent,
+    HomeComponent,
+    NotFoundComponent    
   ],
   imports: [
     BrowserModule,
     FormsModule, 
-    HttpClientModule  ],
+    HttpClientModule,
+   routing  ],
   providers: [
     ListaClienteClaseService,
-    ListaClienteApiService
+    ListaClienteApiService,
+    appRoutingProviders
   ],
   bootstrap: [AppComponent]
 })

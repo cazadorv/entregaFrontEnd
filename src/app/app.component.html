@@ -1,25 +1,26 @@
+<router-outlet></router-outlet>
 <div>
-  <div style="text-align:center">
-    <div>
-      <h3>Nuevo Cliente</h3>
-    </div>
-    <div>
-      <div class="row">
-        <div class="col-md-12">
-            <formulario-Alta (onsubmit)="guardar($event)"></formulario-Alta>
+    <div style="text-align:center">
+      <div>
+        <h3>Nuevo Cliente</h3>
+      </div>
+      <div>
+        <div class="row">
+          <div class="col-md-12">
+              <formulario-Alta (onsubmit)="guardar($event)"></formulario-Alta>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div style="text-align:center">
-      <div>
-        <h3>Listado de clientes</h3>
-      </div>
-      <div>
-        <div class="col-md-12">
-            <listado [clientes]="arrayClientes"></listado>      
+    <div style="text-align:center">
+        <div>
+          <h3>Listado de clientes</h3>
         </div>
-
-      </div>
+        <div>
+          <div class="col-md-12">
+              <listado [clientes]="arrayClientes"></listado>      
+          </div>
+  
+        </div>
+    </div>
   </div>
-</div>

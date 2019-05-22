@@ -22,8 +22,6 @@ export class AppComponent implements OnInit {
     this.servicio.getClientes()
       .then( clientes => this.arrayClientes = clientes)
       .catch( error => console.log(error));
-    
   }
       
 }
-
