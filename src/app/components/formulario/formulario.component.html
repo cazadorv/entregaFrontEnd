@@ -1,23 +1,40 @@
 <!--Formulario de alta de clientes-->
-<div  class="row justify-content-center">        
-    <form class="form border-bottom" (ngSubmit)="onSubmit()" #listaClienteForm="ngForm">
+<div  class="row justify-content-center">
+    
+    <!--muestraaaaaaaa-->
+    <div *ngIf="usuario">
+            <img src="{{usuario.avatar}}" width="200"/>
+            <h2>Probando conexion: -> {{usuario.first_name + ' ' + usuario.last_name}}</h2>
+    </div>
+      
+              
+    <form #newCliente="ngForm" class="form border-bottom" (ngSubmit)="onSubmit(newCliente)" >
         <div class="row justify-content-center">
            <h4>Ingrese sus datos</h4>
         </div>
         <div class="form-group">
             <label for="txtNombre">Nombre: </label>
-            <input type="text" id="txtNombre" name="txtNombre" placeholder="Nombre" [(ngModel)]="newCliente.nombre" required minlenght="4" maxlength="20/"/>            
+            <input type="text" id="txtNombre" name="txtNombre" placeholder="Nombre" #txtNombre="ngModel" [(ngModel)]="new_cliente.nombre" required minlenght="4" maxlength="20/"/>
+            <span *ngIf="txtNombre.touched && !txtNombre.valid">
+                Ingrese el nombre
+            </span>
         </div>
         <div class="form-group">
             <label for="txtApellido">Apellido: </label>
-            <input type="text" id="txtApellido" name="txtApellido"  placeholder="Apellido" [(ngModel)]="newCliente.apellido" required minlenght="4" maxlength="20"/>            
+            <input type="text" id="txtApellido" name="txtApellido"  placeholder="Apellido" #txtApellido="ngModel" [(ngModel)]="new_cliente.apellido" required minlenght="4" maxlength="20"/>            
+            <span *ngIf="txtApellido.touched && !txtApellido.valid">
+                    Ingrese el apellido
+                </span>
         </div>
         <div class="form-group">
             <label for="txtDireccion">Direccion: </label>
-            <input type="text"  id="txtDireccion" name="txtDireccion" placeholder="Direccion" [(ngModel)]="newCliente.direccion" required minlenght="6" maxlength="20" ng-pattern="/^[a-zA-Z0-9]*$/"/>
+            <input type="text"  id="txtDireccion" name="txtDireccion" placeholder="Direccion" #txtDireccion="ngModel" [(ngModel)]="new_cliente.direccion" required minlenght="6" maxlength="20" ng-pattern="/^[a-zA-Z0-9]*$/"/>
+            <span *ngIf="txtDireccion.touched && !txtDireccion.valid">
+                    Ingrese la direccion
+                </span>
         </div>        
         <div class="form-group">            
-            <button type="submit" class="btn btn-primary" [disabled]="!listaClienteForm.valid">Guardar datos</button>
+            <button type="submit" value ="Guardar cliente" class="btn btn-primary" [disabled]="!newCliente.form.valid">Guardar datos</button>
         </div>
     </form>
 </div>

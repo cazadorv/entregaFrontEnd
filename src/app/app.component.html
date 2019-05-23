@@ -1,12 +1,13 @@
 <router-outlet></router-outlet>
 <div>
-  <div style="text-align:center">
+  <div style="text-align:center">    
       <div>
         <h3>Nuevo Cliente</h3>
       </div>
       <div>
         <div class="row">
           <div class="col-md-12">
+            <!--Insertamos el componente del formulario-->
             <formulario-Alta (onsubmit)="guardar($event)"></formulario-Alta>
           </div>
         </div>
@@ -18,6 +19,7 @@
         </div>
         <div>
           <div class="col-md-12">
+            <!--Insertamos el componente del listado-->
             <listado [clientes]="arrayClientes"></listado>      
           </div>
           

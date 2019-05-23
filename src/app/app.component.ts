@@ -10,19 +10,20 @@ import { Cliente } from './Clases/Cliente';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  //providers:[ListaClienteApiService]
 })
 
 export class AppComponent implements OnInit {
 
-  arrayClientes: Array<Cliente> = [];
-
+  //arrayClientes: Array<Cliente> = [];
+  public usuario: any;
   constructor ( private _servicioLista: ListaClienteApiService ){}
 
   ngOnInit(){
     this._servicioLista.getClientes().subscribe(
       result =>{
-        console.log(result);
+        this.usuario = result.data;
       },
       error =>{
         console.log(<any>error);
