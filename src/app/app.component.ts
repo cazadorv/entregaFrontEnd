@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
     this._servicioLista.getClientes().subscribe(
       result =>{
         this.usuario = result.data;
+        console.log('y el reslutado es ' + result.data)
       },
       error =>{
         console.log(<any>error);

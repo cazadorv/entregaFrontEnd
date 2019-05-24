@@ -18,6 +18,7 @@ export class ListaClienteApiService{
     //devuelve el listado de todos los clientes, con un get
     getClientes():Observable<any>{
         return this._http.get("https://localhost:5001/prueba");
+            
     }
 
     addCliente(user): Observable<any>{
