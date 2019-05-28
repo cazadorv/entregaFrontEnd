@@ -1,7 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 
 //Servicios
-import { ListaClienteClaseService } from './Services/listasClientesClases-service/listaClientes-service'
+//import { ListaClienteClaseService } from './Services/listasClientesClases-service/listaClientes-service'
 import { ListaClienteApiService } from './Services/listaClienteApi-service/listaClienteApi.service';
 
 //Clases
@@ -11,25 +11,33 @@ import { Cliente } from './Clases/Cliente';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  //providers:[ListaClienteApiService]
 })
 
 export class AppComponent implements OnInit {
 
-  //arrayClientes: Array<Cliente> = [];
-  public usuario: any;
+  arrayClientes: Array<Cliente>=[];
+  
   constructor ( private _servicioLista: ListaClienteApiService ){}
 
   ngOnInit(){
     this._servicioLista.getClientes().subscribe(
-      result =>{
-        this.usuario = result.data;
+     result =>{
+        this.arrayClientes = result.data;
         console.log('y el reslutado es ' + result.data)
       },
       error =>{
         console.log(<any>error);
       }
     );
+  }
+
+  guardar(modelo: Cliente){
+    this._servicioLista.addClientes(modelo).subscribe(
+      data =>{
+        this.arrayClientes.push(data);
+      }
+    );
+
   }
 
   //este constructor usa el servicio para funcionar con el array

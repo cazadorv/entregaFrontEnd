@@ -2,7 +2,8 @@ import {Component,Input} from '@angular/core';
 //Clase
 import { Cliente} from '../../Clases/Cliente';
 //servicio
-import { ListaClienteClaseService } from './../../Services/listasClientesClases-service/listaClientes-service';
+//import { ListaClienteClaseService } from './../../Services/listasClientesClases-service/listaClientes-service';
+import { ListaClienteApiService } from './../../Services/listaClienteApi-service/listaClienteApi.service';
 
 @Component({
     selector: 'listado',
@@ -11,15 +12,27 @@ import { ListaClienteClaseService } from './../../Services/listasClientesClases-
 
 export class ListadoClientesComponent {
 
-    @Input() clientes:Cliente[];
+    @Input() arrayClientes:Cliente[];
     
-    constructor( private servicio: ListaClienteClaseService){}
+    constructor( private _servicioLista: ListaClienteApiService){}
+
+    ngOnInit(){
+      this._servicioLista.getClientes().subscribe(
+        result =>{
+           this.arrayClientes = result.data;
+           console.log('y el reslutado es ' + result.data)
+         },
+         error =>{
+           this._servicioLista.error(error);
+         }
+       );
+    }
 
     deleteCliente(id: number) {
         if (confirm("Desea eliminar este cliente??")){        
-        this.servicio.deleteCliente(id)
-          .then(() => console.log('Cliente eliminado'))
-          .catch( error => console.log(error));
+        this._servicioLista.deleteCliente(id)
+          //.then(() => console.log('Cliente eliminado'))
+          //.catch( error => console.log(error));
         }
       }
 }

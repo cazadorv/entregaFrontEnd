@@ -1,13 +1,5 @@
 <!--Formulario de alta de clientes-->
 <div  class="row justify-content-center">
-    
-    <!--muestraaaaaaaa-->
-    <div *ngIf="usuario">
-            <img src="{{usuario.avatar}}" width="200"/>
-            <h2>Probando conexion: -> {{usuario.first_name + ' ' + usuario.last_name}}</h2>
-    </div>
-      
-              
     <form #newCliente="ngForm" class="form border-bottom" (ngSubmit)="onSubmit(newCliente)" >
         <div class="row justify-content-center">
            <h4>Ingrese sus datos</h4>
@@ -33,7 +25,7 @@
                     Ingrese la direccion
                 </span>
         </div>        
-        <div class="form-group">            
+        <div class="form-group">
             <button type="submit" value ="Guardar cliente" class="btn btn-primary" [disabled]="!newCliente.form.valid">Guardar datos</button>
         </div>
     </form>

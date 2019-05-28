@@ -12,14 +12,29 @@ export class FormularioClientesComponent {
   
   newCliente: Cliente = new Cliente(0,'','','');  
   new_cliente: any;
+  usuarioLleno: any;
 
   constructor( private _servicio: ListaClienteApiService ) {
-    this.new_cliente ={
+      this.new_cliente ={
       "id": 0,
       "nombre": "",
       "apellido": "",
       "direccion": ""
       }
+  }
+
+  onSubmit(form){
+    this._servicio.addClientes(this.new_cliente).subscribe(
+      response=>{        
+        this.usuarioLleno=response
+        console.log("en el submit - > "+ this.usuarioLleno);
+        form.reset()
+        //return response
+      },
+      error =>{
+        console.log(<any>error);
+      }
+    )
   }
 
   //genero el nuevo id para el cliente
@@ -38,8 +53,6 @@ export class FormularioClientesComponent {
       "apellido": "",
       "direccion": ""
       }
-
-    //this.newCliente = new Cliente( 0, '', '', '');
   }
     
 }

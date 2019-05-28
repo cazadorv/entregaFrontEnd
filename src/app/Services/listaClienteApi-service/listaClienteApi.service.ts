@@ -11,42 +11,45 @@ export class ListaClienteApiService{
 
     public apiUrl: string;
 
-    constructor(public _http:HttpClient){
-        this.apiUrl = "https://reqres.in/";
+    constructor(private _http:HttpClient){
+        this.apiUrl = "http://localhost:5000/";
     }
 
     //devuelve el listado de todos los clientes, con un get
+
+    //ver xq no puedo declarar observable<Cliente>
     getClientes():Observable<any>{
-        return this._http.get("https://localhost:5001/prueba");
-            
+        return this._http.get(this.obtenerRuta('cliente'))//.pipe(map(this.getDatos));
     }
 
-    addCliente(user): Observable<any>{
-        let datoJson = JSON.stringify(user);
+    //agrego un nuevo cliente desde la url
+    addClientes(nvocliente): Observable<any>{
+        let datoJson = JSON.stringify(nvocliente);
         let nuevoHeaders = new HttpHeaders().set('Content-Type','application/json');
-        return this._http.post(this.apiUrl + 'api/users', datoJson,{headers:nuevoHeaders});       
+        return this._http.post(this.apiUrl + 'cliente', datoJson,{headers:nuevoHeaders});       
     }
+    
+    deleteCliente(id){
 
-    //metodo que permite hacer un post para dar de alta un producto
-    //addCliente(modelo:Cliente): Observable<Cliente>{
-    //    return this._http.post(this.obtenerRuta(''),modelo).pipe(
-    //        map(response => {this.obtenerDatos}).call(this.error));
-    //}
+    }
 
     //para manejar cualquier error que se produzca
     public error(error:any){
+        //se crea un mensaje, para devolver el error
         let msg = (error.message) ? error.message : 'Error Desconocido';
         console.log(msg);
         return Observable.throw(msg);
     }
-
-    private obtenerDatos(data:Response){
+    //con este metodo manejo los datos que me envia captura del http
+    private getDatos(data:Response){
         let datos = data.json();
-        console.log('getclientes -> '+datos);
+        console.log('getclientes -> '+ datos);
         return datos || [];
     }
 
     private obtenerRuta(modelo:string){
         return this.apiUrl+modelo
     }
+
+
 }

@@ -24,7 +24,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     BrowserModule,
     FormsModule, 
     HttpClientModule,
-   routing  ],
+    routing  
+  ],
   providers: [
     ListaClienteClaseService,
     ListaClienteApiService,
