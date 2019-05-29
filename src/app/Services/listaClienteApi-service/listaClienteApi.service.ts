@@ -12,21 +12,20 @@ export class ListaClienteApiService{
     public apiUrl: string;
 
     constructor(private _http:HttpClient){
-        this.apiUrl = "http://localhost:5000/";
+        this.apiUrl = "https://localhost:5001/";
     }
 
     //devuelve el listado de todos los clientes, con un get
-
     //ver xq no puedo declarar observable<Cliente>
-    getClientes():Observable<any>{
-        return this._http.get(this.obtenerRuta('cliente'))//.pipe(map(this.getDatos));
+    getClientes():Observable<any>{        
+        return this._http.get(this.obtenerRuta('cliente'))
     }
 
     //agrego un nuevo cliente desde la url
     addClientes(nvocliente): Observable<any>{
         let datoJson = JSON.stringify(nvocliente);
         let nuevoHeaders = new HttpHeaders().set('Content-Type','application/json');
-        return this._http.post(this.apiUrl + 'cliente', datoJson,{headers:nuevoHeaders});       
+        return this._http.post(this.apiUrl + 'cliente/crear', datoJson,{headers:nuevoHeaders});       
     }
     
     deleteCliente(id){

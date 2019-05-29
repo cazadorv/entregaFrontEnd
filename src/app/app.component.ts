@@ -15,14 +15,14 @@ import { Cliente } from './Clases/Cliente';
 
 export class AppComponent implements OnInit {
 
-  arrayClientes: Array<Cliente>=[];
+  listadoClientes: Array<Cliente>=[];
   
   constructor ( private _servicioLista: ListaClienteApiService ){}
 
   ngOnInit(){
     this._servicioLista.getClientes().subscribe(
      result =>{
-        this.arrayClientes = result.data;
+        this.listadoClientes = result.data;
         console.log('y el reslutado es ' + result.data)
       },
       error =>{
@@ -30,11 +30,13 @@ export class AppComponent implements OnInit {
       }
     );
   }
-
-  guardar(modelo: Cliente){
+   guardar(modelo: Cliente){
     this._servicioLista.addClientes(modelo).subscribe(
       data =>{
-        this.arrayClientes.push(data);
+        this.listadoClientes.push(data);
+      },
+      error =>{
+        console.log(<any>error);
       }
     );
 

@@ -12,15 +12,15 @@ import { ListaClienteApiService } from './../../Services/listaClienteApi-service
 
 export class ListadoClientesComponent {
 
-    @Input() arrayClientes:Cliente[];
+    @Input() listadoClientes:Cliente[];
     
     constructor( private _servicioLista: ListaClienteApiService){}
 
     ngOnInit(){
       this._servicioLista.getClientes().subscribe(
         result =>{
-           this.arrayClientes = result.data;
-           console.log('y el reslutado es ' + result.data)
+           this.listadoClientes = result;
+           console.log('y el reslutado es ' + result)
          },
          error =>{
            this._servicioLista.error(error);
