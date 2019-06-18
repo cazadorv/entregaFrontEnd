@@ -16,6 +16,7 @@ export class ListaClienteApiService{
     }
 
     //devuelve el listado de todos los clientes, con un get
+    /*ahora el get funciona con una promesa*/
     getClientes():Promise<Cliente[]> {
         return new Promise(
             (resolve,reject)=>{
