@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
-import { Observable } from 'rxjs/internal/Observable';
-//import { map } from 'rxjs/operators';
-//import { Cliente} from '../../Clases/Cliente';
+import 'rxjs/operators';
+import { Cliente} from '../../Clases/Cliente';
+import { resolve } from 'url';
 
 //para poder hacer put, post, delete, get
 
 @Injectable()
 export class ListaClienteApiService{
-
+ 
     public apiUrl: string;
 
     constructor(private _http:HttpClient){
@@ -16,20 +16,34 @@ export class ListaClienteApiService{
     }
 
     //devuelve el listado de todos los clientes, con un get
-    //ver xq no puedo declarar observable<Cliente>
-    getClientes():Observable<any>{        
-        return this._http.get(this.obtenerRuta('cliente'))
+    getClientes():Promise<Cliente[]> {
+        return new Promise(
+            (resolve,reject)=>{
+                this._http.get(this.obtenerRuta('cliente'))
+                .toPromise()
+                .then(
+                    resolve =>{
+                        console.log(resolve);                        
+                    },
+                    reject =>{
+                        //error
+                        console.log(reject + " error de algun tipo ")
+                    }
+                )
+            }
+        );
+        
+                //return 
     }
 
     //agrego un nuevo cliente desde la url
-    addClientes(nvocliente): Observable<any>{
+    addClientes(nvocliente):Promise<Cliente>{
         let datoJson = JSON.stringify(nvocliente);
         let nuevoHeaders = new HttpHeaders().set('Content-Type','application/json');
-        return this._http.post(this.apiUrl + 'cliente/crear', datoJson,{headers:nuevoHeaders});       
-    }
-    
-    deleteCliente(id){
-
+        return new Promise(
+            (res,rej)=>{
+                this._http.post(this.apiUrl + 'cliente/crear', datoJson,{headers:nuevoHeaders})                
+            });
     }
 
     //para manejar cualquier error que se produzca
@@ -37,13 +51,7 @@ export class ListaClienteApiService{
         //se crea un mensaje, para devolver el error
         let msg = (error.message) ? error.message : 'Error Desconocido';
         console.log(msg);
-        return Observable.throw(msg);
-    }
-    //con este metodo manejo los datos que me envia captura del http
-    private getDatos(data:Response){
-        let datos = data.json();
-        console.log('getclientes -> '+ datos);
-        return datos || [];
+        return msg;
     }
 
     private obtenerRuta(modelo:string){

@@ -2,7 +2,7 @@ import { Component,OnInit } from '@angular/core';
 
 //Servicios
 //import { ListaClienteClaseService } from './Services/listasClientesClases-service/listaClientes-service'
-import { ListaClienteApiService } from './Services/listaClienteApi-service/listaClienteApi.service';
+import { ListaClienteApiService } from './Services/listaClienteApi-service/listaClienteApi.serviceOBSERVABLES';
 
 //Clases
 import { Cliente } from './Clases/Cliente';
@@ -20,16 +20,19 @@ export class AppComponent implements OnInit {
   constructor ( private _servicioLista: ListaClienteApiService ){}
 
   ngOnInit(){
-    this._servicioLista.getClientes().subscribe(
+    this._servicioLista.getClientes()
+    .toPromise()
+    .then(
      result =>{
-        this.listadoClientes = result.data;
-        console.log('y el reslutado es ' + result.data)
-      },
+        this.listadoClientes = result;
+      })
+    .catch(
       error =>{
-        console.log(<any>error);
+        this._servicioLista.error(error);
       }
     );
   }
+  
    guardar(modelo: Cliente){
     this._servicioLista.addClientes(modelo).subscribe(
       data =>{

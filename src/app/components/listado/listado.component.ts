@@ -2,8 +2,7 @@ import {Component,Input} from '@angular/core';
 //Clase
 import { Cliente} from '../../Clases/Cliente';
 //servicio
-//import { ListaClienteClaseService } from './../../Services/listasClientesClases-service/listaClientes-service';
-import { ListaClienteApiService } from './../../Services/listaClienteApi-service/listaClienteApi.service';
+import { ListaClienteApiService } from '../../Services/listaClienteApi-service/listaClienteApi.serviceOBSERVABLES';
 
 @Component({
     selector: 'listado',
@@ -20,7 +19,6 @@ export class ListadoClientesComponent {
       this._servicioLista.getClientes().subscribe(
         result =>{
            this.listadoClientes = result;
-           console.log('y el reslutado es ' + result)
          },
          error =>{
            this._servicioLista.error(error);
