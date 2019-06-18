@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
-import { map } from 'rxjs/operators';
-import { Cliente} from '../../Clases/Cliente';
+//import { map } from 'rxjs/operators';
+//import { Cliente} from '../../Clases/Cliente';
 
 //para poder hacer put, post, delete, get
 

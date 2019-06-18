@@ -1,5 +1,5 @@
 import { ListaClienteApiService } from './../../Services/listaClienteApi-service/listaClienteApi.service';
-import { ListaClienteClaseService } from './../../Services/listasClientesClases-service/listaClientes-service';
+//import { ListaClienteClaseService } from './../../Services/listasClientesClases-service/listaClientes-service';
 import { Component} from '@angular/core';
 import { Cliente } from '../../Clases/Cliente';
 
