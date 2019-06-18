@@ -43,7 +43,7 @@ export class ListaClienteApiService{
         let nuevoHeaders = new HttpHeaders().set('Content-Type','application/json');
         return new Promise(
             (res,rej)=>{
-                this._http.post(this.apiUrl + 'cliente/crear', datoJson,{headers:nuevoHeaders})                
+                this._http.post(this.apiUrl + 'cliente/nuevo', datoJson,{headers:nuevoHeaders})                
             });
     }
 
