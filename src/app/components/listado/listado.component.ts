@@ -10,7 +10,7 @@ import { ListaClienteApiService } from '../../Services/listaClienteApi-service/l
 })
 
 export class ListadoClientesComponent {
-
+// deberia usar un asyn/await
     @Input() listadoClientes:Cliente[];
     
     constructor( private _servicioLista: ListaClienteApiService){}
